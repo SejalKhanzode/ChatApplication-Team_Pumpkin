@@ -1,39 +1,31 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const cookieParser = require("cookie-parser");
-const cors = require("cors")
+const express = require('express')
+const cors = require('cors')
+require('dotenv').config()
+const connect = require('./config/connectDB')
+const router = require('./routes/index')
+const cookiesParser = require('cookie-parser')
+const { app, server } = require('./socket/index')
 
-const database = require("./config/database");
-const userRoutes = require("./routes/userRoutes");
-const messageRoutes = require("./routes/messageRoutes")
+// const app = express()
+app.use(cors({
+    origin : process.env.FRONTEND_URL,
+    credentials : true
+}))
+app.use(express.json())
+app.use(cookiesParser())
+const PORT = process.env.PORT || 8080
 
-dotenv.config();
-const PORT = process.env.PORT || 8080;
-const app = express();
-app.use(express.json());
+app.get('/',(request,response)=>{
+    response.json({
+        message : "Server running at " + PORT
+    })
+})
 
-database.connect();
+//api endpoints
+app.use('/api',router)
 
-app.use(cookieParser());
-app.use(
-	cors({
-		origin:"http://localhost:5173",
-		credentials:true,
-	})
-)
-
-app.use("/api/auth", userRoutes);
-app.use("/api/message", messageRoutes);
-
-
-//def route
-app.get("/", (req, res) => {
-	return res.json({
-		success:true,
-		message:'Your server is up and running....'
-	});
-});
-
-app.listen(PORT, () => {
-	console.log(`App is running at ${PORT}`)
+connect().then(()=>{
+    server.listen(PORT,()=>{
+        console.log("server running at " + PORT)
+    })
 })
