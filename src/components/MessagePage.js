@@ -6,7 +6,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { FaAngleLeft } from "react-icons/fa6";
 import { CiFaceSmile } from "react-icons/ci";
 
-// import Loading from './Loading';
+
 import bg from "../assets/wallapaper.jpeg";
 import { IoMdSend } from "react-icons/io";
 import moment from "moment";
@@ -28,13 +28,11 @@ const MessagePage = () => {
   });
   const [message, setMessage] = useState({
     text: "",
-    // imageUrl: "",
-    // videoUrl: "",
+    
   });
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // const [loading, setLoading] = useState(false);
   const [allMessage, setAllMessage] = useState([]);
   const currentMessage = useRef(null);
 
@@ -47,10 +45,7 @@ const MessagePage = () => {
     }
   }, [allMessage]);
 
-  // const handleUploadImageVideoOpen = () => {
-  //   setOpenImageVideoUpload((preve) => !preve);
-  // };
-
+  
   useEffect(() => {
     if (socketConnection) {
       socketConnection.emit("message-page", params.userId);
