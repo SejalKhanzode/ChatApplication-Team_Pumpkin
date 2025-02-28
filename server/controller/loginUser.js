@@ -51,7 +51,7 @@ async function loginController(request, response) {
                 user: {
                     id: user._id,
                     email: user.email,
-                    name: user.name, // Include other user details if needed
+                    name: user.name, 
                 },
             });
     } catch (error) {

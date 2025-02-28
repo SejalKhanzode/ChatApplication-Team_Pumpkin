@@ -26,16 +26,15 @@ const MessagePage = () => {
     online: false,
     _id: "",
   });
-  const [openImageVideoUpload, setOpenImageVideoUpload] = useState(false);
   const [message, setMessage] = useState({
     text: "",
-    imageUrl: "",
-    videoUrl: "",
+    // imageUrl: "",
+    // videoUrl: "",
   });
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [allMessage, setAllMessage] = useState([]);
   const currentMessage = useRef(null);
 
@@ -48,9 +47,9 @@ const MessagePage = () => {
     }
   }, [allMessage]);
 
-  const handleUploadImageVideoOpen = () => {
-    setOpenImageVideoUpload((preve) => !preve);
-  };
+  // const handleUploadImageVideoOpen = () => {
+  //   setOpenImageVideoUpload((preve) => !preve);
+  // };
 
   useEffect(() => {
     if (socketConnection) {
@@ -101,7 +100,7 @@ const MessagePage = () => {
   return (
     <div
       style={{ backgroundImage: `url(${bg})` }}
-      className="bg-no-repeat bg-cover relative"
+      className="bg-no-repeat bg-cover "
     >
       <header className="sticky top-0 h-16 bg-white flex justify-between items-center px-4">
         <div className="flex items-center gap-4">
@@ -131,7 +130,7 @@ const MessagePage = () => {
           </div>
         </div>
 
-        <div>
+        <div className=" ">
           <button
             className="cursor-pointer hover:text-primary"
             onClick={() => setSidebarOpen(true)}
@@ -144,7 +143,7 @@ const MessagePage = () => {
             isOpen={sidebarOpen}
             onClose={() => setSidebarOpen(false)}
             user={dataUser}
-            className="z-50 bg-white opacity-100 Absolute"
+            className="z-50 bg-white opacity-100 relative"
           />
         </div>
       </header>

@@ -14,7 +14,7 @@ function App() {
         <Route  path="/" element={<Register/>}/>
         <Route  path="/login" element={<Login/>}/>
         <Route  path="/chat" element={<Home/>}>
-         <Route path=":userId" element={<MessageWindow />} />
+          <Route path=":userId" element={<MessageWindow />} />
         </Route>
       </Routes>
    </div>

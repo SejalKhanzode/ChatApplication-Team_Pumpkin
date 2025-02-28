@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs')
 
 async function registerUser(request,response){
     try {
-        const { name, email, password,contactNumber, profile_pic } = request.body
+        const { name, email, password,contactNumber } = request.body
 
         const checkEmail = await UserModel.findOne({ email }) 
         if(checkEmail){
@@ -13,22 +13,19 @@ async function registerUser(request,response){
             })
         }
 
-        const salt = await bcryptjs.genSalt(10)
-        const hashpassword = await bcryptjs.hash(password,salt)
+        const hashedPassword = await bcryptjs.hash(password, 10);
 
-        const payload = {
+        const user = await UserModel.create({
             name,
-            email,contactNumber,
+            email,
+            contactNumber,
             profile_pic:`https://api.dicebear.com/5.x/initials/svg?seed=${name}`,
-            password : hashpassword
-        }
-
-        const user = new UserModel(payload)
-        const userSave = await user.save()
+            password : hashedPassword
+          });
 
         return response.status(201).json({
             message : "User created successfully",
-            data : userSave,
+            data : user,
             success : true
         })
 

@@ -25,7 +25,7 @@ const LoginPage = () => {
   },[])
 
   const handleOnChange = (e)=>{
-    const { name, value} = e.target
+    const { name,value} = e.target
 
     setData((preve)=>{
       return{
@@ -124,7 +124,7 @@ const LoginPage = () => {
         </Link>
       </p>
 
-      {/* Dotted Design (Top Right & Bottom Left) */}
+   
       <img src={dot} alt="dotted design" className="absolute top-2 right-2 w-10 h-10 opacity-60" />
       <img src={dot} alt="dotted design" className="absolute bottom-2 left-2 w-10 h-10 opacity-60" />
     </div>

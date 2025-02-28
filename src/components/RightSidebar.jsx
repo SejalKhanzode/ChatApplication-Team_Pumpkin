@@ -7,7 +7,7 @@ const Sidebar = ({ isOpen, onClose, user, messages }) => {
 
 
   return (
-    <div className="fixed right-0 top-0 h-[100%] w-64 bg-white shadow-lg mt-5 mr-5 z-50">
+    <div className="fixed right-0 top-0 h-[100%] w-64 bg-white shadow-lg mt-5 mr-5 z-50 ">
       <button onClick={onClose} className="text-gray-500 text-lg font-bold">
         <IoClose size={24} />
       </button>
